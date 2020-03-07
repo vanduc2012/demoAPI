@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableCaching
 @SpringBootApplication
 @EnableTransactionManagement
-public class DemoApiApplication  extends SpringBootServletInitializer {
+public class DemoApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApiApplication.class, args);
