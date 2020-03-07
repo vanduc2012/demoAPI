@@ -10,10 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("api")
 public class ProductController {
 
     @Autowired
@@ -31,7 +33,7 @@ public class ProductController {
     @RequestMapping(value = "/products/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id){
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id){
         Optional<Product> product= productService.findById(id);
         if (!product.isPresent()){
             return new ResponseEntity<>(product.get(), HttpStatus.NO_CONTENT);
@@ -49,7 +51,7 @@ public class ProductController {
     @RequestMapping(value = "/products/{id}",
             method = RequestMethod.PUT)
     public ResponseEntity<Product> updateProduct(
-            @PathVariable("id") Integer id,
+            @PathVariable("id") Long id,
             @RequestBody Product product) {
         Optional<Product> currentProduct = productService
                 .findById(id);
@@ -69,7 +71,7 @@ public class ProductController {
     @RequestMapping(value = "/products/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<Product> deleteProduct(
-            @PathVariable("id") Integer id) {
+            @PathVariable("id") Long id) {
         Optional<Product> product = productService.findById(id);
         if (!product.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
