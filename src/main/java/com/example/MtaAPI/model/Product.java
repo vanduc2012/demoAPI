@@ -1,5 +1,6 @@
 package com.example.MtaAPI.model;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,13 +10,15 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@ApiModel(value = "Product model")
 @Table(name = "products")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     public Product(){
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
     private String name;
     private double price;
